@@ -6,7 +6,7 @@ public class GameManagerScript : MonoBehaviour {
 
     public static GameManagerScript instance;
     public string uText;
-    public float count;
+    public static float count;
     public float timer = 2;
     public bool gameOver;
 
@@ -25,6 +25,7 @@ public class GameManagerScript : MonoBehaviour {
             {
                 uText = "HOLD ON!";
                 timer -= Time.deltaTime;
+                //Screenshake.instance.Shake();
                 if (timer <= 0)
                 {
                     uText = "";

@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour {
     public Material SMat;
     public Material FMat;
     public static PlayerScript instance;
+    public float zpos;
 
 	void Start ()
     {
@@ -47,6 +48,7 @@ public class PlayerScript : MonoBehaviour {
             Movement();
             transform.position += transform.forward * vel / 3.5f;
         }
+        zpos = rb.transform.position.z;
         Camera.main.transform.position = new Vector3(.58f, 3.4f, rb.transform.position.z - 2);
     }
 
