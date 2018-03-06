@@ -11,10 +11,14 @@ public class TextScript : MonoBehaviour {
     {
         txt = GetComponent<Text>();
 	}
-	
 
-	void Update ()
+
+    void Update()
     {
         txt.text = GameManagerScript.instance.uText;
-	}
+        if (GameManagerScript.instance.inShake)
+        {
+            txt.text +="\n" + Mathf.Round(GameManagerScript.instance.timer*10)/10;
+        }
+    }
 }

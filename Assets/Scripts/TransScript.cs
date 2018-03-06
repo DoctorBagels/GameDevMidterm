@@ -22,7 +22,6 @@ public class TransScript : MonoBehaviour {
             Color color = R.material.color;
             color.a = .4f;
             R.material.color = color;
-            Debug.Log("HIT!");
         }
 
         if (col.gameObject.tag == "Wall")
@@ -31,7 +30,6 @@ public class TransScript : MonoBehaviour {
             Color color = R.material.color;
             color.a = .4f;
             R.material.color = color;
-            Debug.Log("WallHit");
         }
     }
 }

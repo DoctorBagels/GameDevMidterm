@@ -14,8 +14,9 @@ public class PlayerScript : MonoBehaviour {
     public Material FMat;
     public static PlayerScript instance;
     public float zpos;
+    int sCount = 1;
 
-	void Start ()
+    void Start ()
     {
         rb = GetComponent<Rigidbody>();
         instance = this;
@@ -23,7 +24,7 @@ public class PlayerScript : MonoBehaviour {
 
 	void Update ()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             holding = true;
         }
@@ -31,13 +32,20 @@ public class PlayerScript : MonoBehaviour {
         {
             holding = false;
         }
-        if (inPoleRange && holding)
+        if (!GameManagerScript.instance.gameOver)
         {
-            gameObject.GetComponent<Renderer>().material = SMat;
-        }
-        else if (holding && !inPoleRange)
-        {
-            gameObject.GetComponent<Renderer>().material = FMat;
+            if (inPoleRange && holding)
+            {
+                gameObject.GetComponent<Renderer>().material = SMat;
+            }
+            else if (holding && !inPoleRange)
+            {
+                gameObject.GetComponent<Renderer>().material = FMat;
+            }
+            else
+            {
+                gameObject.GetComponent<Renderer>().material = DMat;
+            }
         }
         else
         {
@@ -48,27 +56,44 @@ public class PlayerScript : MonoBehaviour {
             Movement();
             transform.position += transform.forward * vel / 3.5f;
         }
+        else
+        {
+            if (sCount > 0)
+            {
+                rb.AddForce(Random.Range(-3f,3f), 3, -7, ForceMode.Impulse);
+                sCount -= 1;
+                rb.freezeRotation = false;
+            }
+            
+        }
         zpos = rb.transform.position.z;
-        Camera.main.transform.position = new Vector3(.58f, 3.4f, rb.transform.position.z - 2);
+        if (GameManagerScript.instance.inShake)
+        {
+            Camera.main.transform.position = new Vector3(Random.Range(-.05f, .05f), Random.Range(-.05f, .05f), 0) + new Vector3(.58f, 3.4f, PlayerScript.instance.zpos - 2);
+        }
+        else
+        {
+            Camera.main.transform.position = new Vector3(.58f, 3.4f, rb.transform.position.z - 2);
+        }
     }
 
     void Movement()
     {
         if (Input.GetKey(KeyCode.W) && !holding)
         {
-            vel += .002f;
+            vel += .003f;
         }
         if (Input.GetKey(KeyCode.S) && !holding)
         {
-            vel -= .002f;
+            vel -= .003f;
         }
         if (vel < 0 && (!Input.GetKey(KeyCode.S) || holding && !jumping))
         {
-            vel += .001f;
+            vel += .002f;
         }
         else if (vel > 0 && (!Input.GetKey(KeyCode.W) || holding && !jumping))
         {
-            vel -= .001f;
+            vel -= .002f;
         }
         else if (vel <= .002f && vel >= -.002f && ((!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) || holding))
         {
