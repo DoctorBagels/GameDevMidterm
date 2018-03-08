@@ -10,6 +10,7 @@ public class GameManagerScript : MonoBehaviour {
     public float timer = 2;
     public bool gameOver;
     public bool inShake = false;
+    public AudioSource dedSound;
 
 	void Start ()
     {
@@ -41,6 +42,7 @@ public class GameManagerScript : MonoBehaviour {
                     {
                         gameOver = true;
                         inShake = false;
+                        dedSound.Play();
                     }
                 }
             }

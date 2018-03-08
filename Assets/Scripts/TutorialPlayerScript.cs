@@ -13,10 +13,13 @@ public class TutorialPlayerScript : MonoBehaviour {
     public Material SMat;
     public Material FMat;
     public float zpos;
+    public static TutorialPlayerScript instance;
+    public AudioSource jump;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        instance = this;
     }
 
     void Update()
@@ -96,6 +99,7 @@ public class TutorialPlayerScript : MonoBehaviour {
         {
 
             rb.AddForce(0, 3.8f, 0, ForceMode.Impulse);
+            jump.Play();
         }
     }
 

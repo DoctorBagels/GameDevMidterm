@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour {
     public static PlayerScript instance;
     public float zpos;
     int sCount = 1;
+    public AudioSource jump;
 
     void Start ()
     {
@@ -54,7 +55,7 @@ public class PlayerScript : MonoBehaviour {
         if (!GameManagerScript.instance.gameOver)
         {
             Movement();
-            transform.position += transform.forward * vel / 3.5f;
+            transform.position += transform.forward * vel * .40f;
         }
         else
         {
@@ -119,6 +120,7 @@ public class PlayerScript : MonoBehaviour {
         {
 
             rb.AddForce(0, 3.8f, 0, ForceMode.Impulse);
+            jump.Play();
         }
     }
 
