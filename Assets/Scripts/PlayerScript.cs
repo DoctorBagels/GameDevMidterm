@@ -136,6 +136,12 @@ public class PlayerScript : MonoBehaviour {
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
         }
+
+        if(col.gameObject.tag == "Death")
+        {
+            GameManagerScript.instance.gameOver = true;
+            GameManagerScript.instance.dedSound.Play();
+        }
     }
 
     void OnTriggerExit(Collider col)

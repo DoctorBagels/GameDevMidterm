@@ -14,7 +14,7 @@ public class BackgroundScript : MonoBehaviour {
         transform.position += new Vector3(0, 0, -.6f);
         if (transform.position.z < -6)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 24);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 16.597f);
         }            
      }
 }

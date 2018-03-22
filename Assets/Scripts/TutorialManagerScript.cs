@@ -24,18 +24,18 @@ public class TutorialManagerScript : MonoBehaviour {
     {
 		if (start)
         {
-            tText = "Welcome to Subway Simulator 2018!\nPress W and S to move forward and backward.\nYour goal is to get to the cake at the end of the car.";
+            tText = "Uh oh, Looks like you forgot your arms again!\nThis is gonna be another tough subway ride.\nYour goal is to get to the cake at the end of the car.\nPress W and S to move forward and backward.";
         }
         if(trigger1)
         {
             start = false;
-            tText = "Press A and D to turn, and space to jump!.\nWalk over to the pole on the left and hold shift to grab it.\n(You will glow green if this is successful)";
+            tText = "You can also press A and D to turn.\nWalk over to the pole on the left and hold shift to grab it with your teeth.\n(Your pants will glow green if this is successful)";
         }
         if(hasHeld)
         {
             Destroy(iWall);
             trigger1 = false;
-            tText = "Good job!\nYou may now continue.";
+            tText = "Good job!\nLets keep going.";
         }
         if(trigger2)
         {
@@ -48,7 +48,7 @@ public class TutorialManagerScript : MonoBehaviour {
             inShake = false;
             trigger2 = false;
             Destroy(iWall2);
-            tText = "Awesome job!\nGo to the cake to complete the tutorial!";
+            tText = "Awesome job!\nGo to the cake to move on to the real challenge.\n(Press 'Space' to jump.)";
         }
 	}
 }
